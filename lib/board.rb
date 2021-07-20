@@ -1,6 +1,5 @@
 
 class Board
-
     attr_accessor :board, :transposed
 
     def initialize
@@ -39,7 +38,6 @@ class Board
     end
 
     def display_board
-      system("clear") || system("cls")
       puts " #{@board[0][0]} | #{@board[0][1]} | #{@board[0][2]} "
       puts "------------------"
       puts " #{@board[1][0]} | #{@board[1][1]} | #{@board[1][2]} "

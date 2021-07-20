@@ -1,4 +1,5 @@
 class TicTacToad
+    include GameTitle
     attr_accessor :player_one, :player_two, :current_player
 
     def initialize
@@ -7,18 +8,26 @@ class TicTacToad
     end
 
     def start
-       play
+      clear
+      self.print_title
+      play
     end
 
     def play
         set_up_player_one
         set_up_player_two
         loop do
+            clear
+            self.print_title
             @board.display_board
             @current_player.get_coordinates
             break if win?
             switch_players
         end
+    end
+
+    def clear
+       system("clear") || system("cls")
     end
 
     def set_up_player_one
@@ -52,6 +61,8 @@ class TicTacToad
 
     def check_draw
         if @board.full?(@moves)
+            clear
+            self.print_title
             @board.display_board
             puts "🐸🍄🐸🍄 The Toads Are Toungue TIED 🐸🍄🐸🍄"
             true
@@ -72,11 +83,14 @@ class TicTacToad
     end
 
     def end_game
+        clear
         @board.display_board
         if @current_player == @player_one
-            puts "🐸🐸🐸🐸 #{@current_player.name} IS THE TOP TOAD 🐸🐸🐸🐸"
+            self.print_green(@current_player.name)
+            puts "🐸🐸🐸🐸 IS THE TOP TOAD 🐸🐸🐸🐸"
         else
-            puts "🍄🍄🍄🍄 #{@current_player.name} IS THE TOP TOAD 🍄🍄🍄🍄"
+            self.print_red(@current_player.name)
+            puts "🍄🍄🍄🍄 IS THE TOP TOAD 🍄🍄🍄🍄"
         end
         true
     end
