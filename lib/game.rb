@@ -10,12 +10,12 @@ class TicTacToad
     def start
       clear
       self.print_title
+      set_up_player_one
+      set_up_player_two
       play
     end
 
     def play
-        set_up_player_one
-        set_up_player_two
         loop do
             clear
             self.print_title
@@ -24,7 +24,9 @@ class TicTacToad
             break if win?
             switch_players
         end
+        puts "Thanks for Playing"
     end
+
 
     def clear
        system("clear") || system("cls")
